@@ -1,32 +1,32 @@
 import Joi from "joi";
 import mongoose from "mongoose";
 
-const filmSchema = new mongoose.Schema({
-  titre: {
+const item = new mongoose.Schema({
+  name: {
     type: String,
     required: true,
     lowercase: true
   },
-  annee: {
-    type: Number
+  price: {
+    type: Number,
+    required: true
   }
 })
 
-const Film = mongoose.model('Film', filmSchema)
+const Item = mongoose.model('objet', item)
 
-const filmValidation = Joi.object({
-  titre: Joi.string()
+const ItemValidation = Joi.object({
+  name: Joi.string()
     .required()
     .messages({
-      'string.empty': 'Le titre du film est obligatoire'
+      'string.empty': 'Le nom de l\'objet est obligatoire'
     }),
-  annee: Joi.number()
-    .min(1921)
+  price: Joi.number()
     .required()
     .messages({
-      'number.base': 'L\'année doit etre un nombre',
-      'number.min': 'L\'année doit être supérieur à 1921'
+      'price.number': 'Le prix doit être un nombre',
+      'number.empty': 'Le prix est obligatoire'
     })
 })
 
-export { Film, filmValidation }
+export { Item, ItemValidation }

@@ -18,5 +18,5 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/tpitems:latest .
+          docker tag tpitems ${{ secrets.DOCKER_USERNAME }}/tpitems:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/tpitems:latest

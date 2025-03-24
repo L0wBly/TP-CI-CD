@@ -1,0 +1,31 @@
+name: Build and Push Docker Image
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Docker image
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/tpitems:latest ./app
+
+      - name: Tag Docker image
+        run: |
+          docker tag ${{ secrets.DOCKER_USERNAME }}/tpitems:latest ${{ secrets.DOCKER_USERNAME }}/tpitems:latest
+
+      - name: Push Docker image
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/tpitems:latest

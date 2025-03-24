@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: ./app
+    image: tpitems:latest
+    container_name: tpitems
+    ports:
+      - "9652:9652"
+    environment:
+      - PORT=9652
+      - DB=mongodb://mongo:27017/TP
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:latest
+    container_name: db
+    ports:
+      - "27017:27017"

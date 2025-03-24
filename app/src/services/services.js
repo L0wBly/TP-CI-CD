@@ -1,4 +1,4 @@
-import { errorCondition } from "../helper/errorcondition.js"
+import { errorCondition } from "../helper/errorCondition.js"
 import { Item, ItemValidation } from "../models/model.js"
 
 

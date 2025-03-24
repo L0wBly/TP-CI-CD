@@ -26,4 +26,4 @@ jobs:
 
       - name: Push Docker image
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/tpitems:lates
+          docker push ${{ secrets.DOCKER_USERNAME }}/tpitems:latest

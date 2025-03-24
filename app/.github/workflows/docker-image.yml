@@ -2,8 +2,7 @@ name: Build and Push Docker Image
 
 on:
   pull_request:
-    branches:
-      - dev
+    types: [opened]
 
 jobs:
   build:

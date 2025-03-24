@@ -16,7 +16,10 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and push Docker image
+      - name: Build Docker image
         run: |
-          docker tag tpitems:latest ${{ secrets.DOCKER_USERNAME }}/tpitems:latest
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/tpitems:latest .
+
+      - name: Push Docker image
+        run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/tpitems:latest
